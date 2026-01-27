@@ -1,0 +1,17 @@
+Обработано уникальных файлов: 8046
+Валидных моделей: 7237
+Invalidity Ratio: 10.05%
+
+Chamfer Distance (в миллиметрах):
+Средний Chamfer Distance: 0.9028
+Медианный Chamfer Distance: 0.1890
+Min Chamfer Distance: 0.0043
+Max Chamfer Distance: 609.3915
+Std Chamfer Distance: 8.8476
+
+IoU:
+Средний IoU: 0.8464
+Медианный IoU: 0.8711
+Min IoU: 0.0000
+Max IoU: 1.0000
+Std IoU: 0.0795

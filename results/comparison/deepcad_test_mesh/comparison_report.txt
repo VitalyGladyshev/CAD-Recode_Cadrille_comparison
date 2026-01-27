@@ -1,0 +1,42 @@
+ОТЧЕТ О СРАВНЕНИИ МОДЕЛЕЙ НА ДАТАСЕТЕ: deepcad_test_mesh
+============================================================
+
+МЕТРИКИ CAD-RECODE:
+  Обработано уникальных файлов: 8046.0
+  Валидных моделей: 7237.0
+  Invalidity Ratio: 10.05
+  Средний Chamfer Distance: 0.9028
+  Медианный Chamfer Distance: 0.189
+  Min Chamfer Distance: 0.0043
+  Max Chamfer Distance: 609.3915
+  Std Chamfer Distance: 8.8476
+  Средний IoU: 0.8464
+  Медианный IoU: 0.8711
+  Min IoU: 0.0
+  Max IoU: 1.0
+  Std IoU: 0.0795
+
+МЕТРИКИ CADRILLE:
+  Обработано уникальных файлов: 8046.0
+  Валидных моделей: 8041.0
+  Invalidity Ratio: 0.06
+  Средний Chamfer Distance: 0.591
+  Медианный Chamfer Distance: 0.1725
+  Min Chamfer Distance: 0.0024
+  Max Chamfer Distance: 260.2421
+  Std Chamfer Distance: 4.5189
+  Средний IoU: 0.8445
+  Медианный IoU: 0.8711
+  Min IoU: 0.0
+  Max IoU: 1.0
+  Std IoU: 0.0816
+
+============================================================
+ВЫВОДЫ:
+============================================================
+✅ Cadrille показывает лучший результат по Chamfer Distance
+   Разница: 0.3118 мм
+✅ CAD-Recode показывает лучший результат по IoU
+   Разница: 0.0019
+✅ Cadrille показывает лучший результат по Invalidity Ratio
+   Разница: 9.99%

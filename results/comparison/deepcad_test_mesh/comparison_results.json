@@ -1,0 +1,27 @@
+{
+  "models": [
+    "CAD-Recode",
+    "Cadrille"
+  ],
+  "dataset": "deepcad_test_mesh",
+  "metrics": {
+    "chamfer_distances_mm": [
+      0.9028,
+      0.591
+    ],
+    "iou_values": [
+      0.8464,
+      0.8445
+    ],
+    "invalidity_ratios_percent": [
+      10.05,
+      0.06
+    ]
+  },
+  "plots": {
+    "chamfer_distance": "/workspace/results/comparison/deepcad_test_mesh/chamfer_distance_comparison.png",
+    "iou": "/workspace/results/comparison/deepcad_test_mesh/iou_comparison.png",
+    "invalidity_ratio": "/workspace/results/comparison/deepcad_test_mesh/invalidity_ratio_comparison.png",
+    "radar": "/workspace/results/comparison/deepcad_test_mesh/radar_comparison.png"
+  }
+}

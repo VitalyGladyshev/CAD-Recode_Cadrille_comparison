@@ -1,0 +1,27 @@
+{
+  "models": [
+    "CAD-Recode",
+    "Cadrille"
+  ],
+  "dataset": "fusion360_test_mesh",
+  "metrics": {
+    "chamfer_distances_mm": [
+      1.6651,
+      0.6085
+    ],
+    "iou_values": [
+      0.8414,
+      0.8474
+    ],
+    "invalidity_ratios_percent": [
+      18.49,
+      0.23
+    ]
+  },
+  "plots": {
+    "chamfer_distance": "/workspace/results/comparison/fusion360_test_mesh/chamfer_distance_comparison.png",
+    "iou": "/workspace/results/comparison/fusion360_test_mesh/iou_comparison.png",
+    "invalidity_ratio": "/workspace/results/comparison/fusion360_test_mesh/invalidity_ratio_comparison.png",
+    "radar": "/workspace/results/comparison/fusion360_test_mesh/radar_comparison.png"
+  }
+}
