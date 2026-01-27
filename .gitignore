@@ -1,0 +1,219 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Flask stuff:
+instance/
+.webassets-cache
+
+# Scrapy stuff:
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# PyBuilder
+.pybuilder/
+target/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# poetry
+poetry.lock
+
+# pdm
+.pdm.toml
+
+# PEP 582
+__pypackages__/
+
+# Celery stuff
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Spyder project settings
+.spyderproject
+.spyproject
+
+# Rope project settings
+.ropeproject
+
+# mkdocs documentation
+/site
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# pytype static type analyzer
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Project-specific: Data directories
+# Игнорируем данные (STL файлы, pkl файлы, датасеты)
+data/
+!data/README.md
+!data/**/README.md
+
+# Project-specific: Model directories
+# Игнорируем модели машинного обучения (обычно большие файлы)
+models/
+!models/README.md
+
+# Project-specific: Results and outputs
+# Игнорируем результаты экспериментов и оценки
+results/
+work_dirs/
+outputs/
+*.png
+*.jpg
+*.jpeg
+*.pdf
+*.svg
+!**/README.md
+
+# Project-specific: Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+*.backup
+
+# Project-specific: Evaluation outputs
+# Результаты оценки (JSON, текстовые файлы с метриками)
+*_eval/
+*_results.json
+*_summary.txt
+detailed_results.json
+comparison_results.json
+
+# Project-specific: Generated code files
+# Сгенерированные CadQuery файлы (только в директориях результатов)
+results/**/*.py
+work_dirs/**/*.py
+outputs/**/*.py
+*_eval/**/*.py
+
+# Project-specific: Mesh and 3D files
+*.stl
+*.step
+*.STEP
+*.brep
+*.obj
+*.ply
+
+# Project-specific: Logs
+*.log
+logs/
+
+# Project-specific: Checkpoints and saved models
+checkpoints/
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.bin
+
+# Project-specific: Cache directories
+.cache/
+*.cache
+
+# OS files
+Thumbs.db
+.DS_Store
