@@ -285,31 +285,28 @@ flowchart TD
 
 ### Подготовка входных данных
 
+#### CADRecode
 ```mermaid
 flowchart LR
-    subgraph CADRecode[CAD-Recode]
-        A1[STL файл] --> A2[Нормализация mesh]
-        A2 --> A3[mesh_to_point_cloud<br/>256 точек]
-        A3 --> A4[Создание input_ids<br/>pad_token_id * 256 + im_start]
-        A4 --> A5[Создание attention_mask<br/>-1 * 256 + 1]
-        A5 --> A6[Готовые данные]
-    end
+    A1[STL файл] --> A2[Нормализация mesh]
+    A2 --> A3[mesh_to_point_cloud<br/>256 точек]
+    A3 --> A4[Создание input_ids<br/>pad_token_id * 256 + im_start]
+    A4 --> A5[Создание attention_mask<br/>-1 * 256 + 1]
+    A5 --> A6[Готовые данные]
 ```
-
+#### Cadrille
 ```mermaid
 flowchart LR
-    subgraph Cadrille[Cadrille]
-        B1[Данные из датасета] --> B2{Тип данных?}
-        B2 -->|PC| B3[Добавление pad токенов<br/>в collate]
-        B2 -->|IMG| B4[Рендеринг mesh<br/>4 ракурса]
-        B2 -->|TEXT| B5[Только текст]
-        B3 --> B6[Формирование chat template]
-        B4 --> B6
-        B5 --> B6
-        B6 --> B7[process_vision_info<br/>для изображений/видео]
-        B7 --> B8[Токенизация через processor]
-        B8 --> B9[Готовые данные]
-    end
+    B1[Данные из датасета] --> B2{Тип данных?}
+    B2 -->|PC| B3[Добавление pad токенов<br/>в collate]
+    B2 -->|IMG| B4[Рендеринг mesh<br/>4 ракурса]
+    B2 -->|TEXT| B5[Только текст]
+    B3 --> B6[Формирование chat template]
+    B4 --> B6
+    B5 --> B6
+    B6 --> B7[process_vision_info<br/>для изображений/видео]
+    B7 --> B8[Токенизация через processor]
+    B8 --> B9[Готовые данные]
 ```
 
 ### Интеграция point embeddings
