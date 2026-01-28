@@ -28,7 +28,7 @@ sequenceDiagram
     Dataset->>Inference: Возврат file_path
     
     Note over Inference: Нормализация mesh
-    Inference->>Inference: mesh.apply_translation()<br/>mesh.apply_scale()
+    Inference->>Inference: mesh.apply_translation()\nmesh.apply_scale()
     
     Note over Inference: Генерация точечного облака
     Inference->>Inference: mesh_to_point_cloud(mesh, n_points=256)
@@ -47,7 +47,7 @@ sequenceDiagram
             BaseModel-->>Model: inputs_embeds (текстовые)
             
             Model->>Encoder: forward(point_cloud)
-            Note over Encoder: Fourier encoding:<br/>cat([points, sin(freqs*points), cos(freqs*points)])
+            Note over Encoder: Fourier encoding:\ncat([points, sin(freqs*points), cos(freqs*points)])
             Encoder-->>Model: point_embeds (256, hidden_size)
             
             Note over Model: Замена pad токенов на point embeddings
@@ -76,7 +76,7 @@ sequenceDiagram
     Model-->>Inference: generated_ids
     
     Inference->>Tokenizer: extract_code(tokenizer, batch_ids)
-    Note over Tokenizer: Удаление служебных токенов:<br/>&lt;|im_start|&gt;, &lt;|endoftext|&gt;, &lt;|im_end|&gt;
+    Note over Tokenizer: Удаление служебных токенов:\n<|im_start|>, <|endoftext|>, <|im_end|>
     Tokenizer-->>Inference: py_string (чистый CadQuery код)
     
     Inference->>Inference: Сохранение в файл
