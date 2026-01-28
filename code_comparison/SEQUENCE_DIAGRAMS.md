@@ -87,30 +87,30 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    Start([Начало forward]) --> CheckCache{past_key_values<br/>is None?}
+    Start([Начало forward]) --> CheckCache{past_key_values is None?}
     
-    CheckCache -->|Да| CreateTextEmbeds[Создание текстовых embeddings<br/>embed_tokens input_ids]
-    CheckCache -->|Нет| UseCache[Использование кэша<br/>past_key_values]
+    CheckCache -->|Да| CreateTextEmbeds[Создание текстовых embeddings\nembed_tokens(input_ids)]
+    CheckCache -->|Нет| UseCache[Использование кэша\npast_key_values]
     
-    CreateTextEmbeds --> EncodePC[Кодирование point cloud<br/>FourierPointEncoder]
+    CreateTextEmbeds --> EncodePC[Кодирование point cloud\nFourierPointEncoder]
     
-    EncodePC --> FourierStep[Fourier encoding:<br/>1. Умножение на частоты<br/>2. sin/cos преобразование<br/>3. Объединение с исходными координатами]
+    EncodePC --> FourierStep[Fourier encoding:\n1. Умножение на частоты\n2. sin/cos преобразование\n3. Объединение с исходными координатами]
     
-    FourierStep --> Project[Проекция в hidden_size<br/>nn.Linear 51 -> hidden_size]
+    FourierDesktop --> Project[Проекция в hidden_size\nnn.Linear(51 → hidden_size)]
     
-    Project --> ReplacePads[Замена pad токенов<br/>inputs_embeds[attention_mask == -1]<br/>= point_embeds]
+    Project --> ReplacePads[Замена pad токенов\ninputs_embeds[attention_mask == -1] = point_embeds]
     
-    ReplacePads --> UpdateMask[Обновление attention_mask<br/>-1 -> 1]
+    ReplacePads --> UpdateMask[Обновление attention_mask\n-1 → 1]
     
-    UpdateMask --> ClearInputIds[Обнуление input_ids<br/>input_ids = None]
+    UpdateMask --> ClearInputIds[Обнуление input_ids\ninput_ids = None]
     
-    ClearInputIds --> CallBase[Вызов базовой модели<br/>Qwen2Model forward]
+    ClearInputIds --> CallBase[Вызов базовой модели\nQwen2Model forward]
     
     UseCache --> CallBase
     
-    CallBase --> GetLogits[Вычисление логитов<br/>lm_head hidden_states]
+    CallBase --> GetLogits[Вычисление логитов\nlm_head(hidden_states)]
     
-    GetLogits --> ComputeLoss{labels<br/>заданы?}
+    GetLogits --> ComputeLoss{labels заданы?}
     
     ComputeLoss -->|Да| CalcLoss[Вычисление CrossEntropyLoss]
     ComputeLoss -->|Нет| NoLoss[loss = None]
