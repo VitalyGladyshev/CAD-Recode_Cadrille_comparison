@@ -231,44 +231,44 @@ sequenceDiagram
 
 ```mermaid
 flowchart TD
-    Start([Начало forward]) --> CheckInputs{inputs_embeds<br/>заданы?}
+    Start([Начало forward]) --> CheckInputs{inputs_embeds заданы?}
     
     CheckInputs -->|Нет| CreateTextEmbeds[Создание текстовых embeddings<br/>embed_tokens input_ids]
-    CheckInputs -->|Да| CheckVisual{Есть визуальные<br/>входы?}
+    CheckInputs -->|Да| CheckVisual{Есть визуальные входы?}
     
     CreateTextEmbeds --> CheckVisual
     
     CheckVisual -->|Есть pixel_values| ProcessImages[Обработка изображений<br/>visual encoder]
     CheckVisual -->|Есть pixel_values_videos| ProcessVideos[Обработка видео<br/>visual encoder]
-    CheckVisual -->|Есть is_pc| CheckCache{past_key_values<br/>is None?}
+    CheckVisual -->|Есть is_pc| CheckCache{past_key_values is None?}
     
     ProcessImages --> ValidateImages[Проверка соответствия<br/>image_token_id и features]
-    ValidateImages --> EmbedImages[masked_scatter<br/>image_embeds]
+    ValidateImages --> EmbedImages[masked_scatter image_embeds]
     
     ProcessVideos --> ValidateVideos[Проверка соответствия<br/>video_token_id и features]
-    ValidateVideos --> EmbedVideos[masked_scatter<br/>video_embeds]
+    ValidateVideos --> EmbedVideos[masked_scatter video_embeds]
     
     EmbedImages --> CheckCache
     EmbedVideos --> CheckCache
     
     CheckCache -->|Да| EncodePC[Кодирование point cloud<br/>FourierPointEncoder]
-    CheckCache -->|Нет| CalcRoPE[Вычисление RoPE<br/>с учетом визуальных токенов]
+    CheckCache -->|Нет| CalcRoPE[Вычисление RoPE с учетом визуальных токенов]
     
-    EncodePC --> FourierStep[Fourier encoding через<br/>FourierEmbedder:<br/>1. Умножение на частоты<br/>2. sin/cos преобразование<br/>3. Объединение]
+    EncodePC --> FourierStep[Fourier encoding через FourierEmbedder:<br/>1. Умножение на частоты<br/>2. sin/cos преобразование<br/>3. Объединение]
     
     FourierStep --> Project[Проекция в hidden_size<br/>nn.Linear 51 -> hidden_size]
     
-    Project --> CalcStartIdxs[Вычисление start_idxs<br/>attention_mask.shape[1] -<br/>attention_mask.sum axis=1]
+    Project --> CalcStartIdxs[Вычисление start_idxs:<br/>длина последовательности минус сумма attention_mask по оси 1]
     
-    CalcStartIdxs --> EmbedPC[Встраивание через цикл<br/>inputs_embeds[i, start_idx:...]<br/>= point_embeds[i]]
+    CalcStartIdxs --> EmbedPC[Встраивание через цикл:<br/>inputs_embeds от start_idx заменяются на point_embeds]
     
     EmbedPC --> CalcRoPE
     
-    CalcRoPE --> CallBase[Вызов базовой модели<br/>Qwen2VLModel forward<br/>с position_ids]
+    CalcRoPE --> CallBase[Вызов базовой модели<br/>Qwen2VLModel forward с position_ids]
     
     CallBase --> GetLogits[Вычисление логитов<br/>lm_head hidden_states]
     
-    GetLogits --> ComputeLoss{labels<br/>заданы?}
+    GetLogits --> ComputeLoss{labels заданы?}
     
     ComputeLoss -->|Да| CalcLoss[Вычисление CrossEntropyLoss]
     ComputeLoss -->|Нет| NoLoss[loss = None]
