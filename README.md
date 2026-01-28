@@ -26,7 +26,7 @@ cad_unified/
 ├── dataset.py                 # Классы датасетов для загрузки данных
 ├── cadrille.py                # Модель Cadrille и вспомогательные функции
 ├── Dockerfile                 # Docker-образ для развертывания
-├── .gitignore                # Игнорируемые файлы для Git
+├── .gitignore                 # Игнорируемые файлы для Git
 └── README.md                  # Документация проекта
 ```
 
