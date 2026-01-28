@@ -96,9 +96,9 @@ flowchart TD
     
     EncodePC --> FourierStep[Fourier encoding:\n1. Умножение на частоты\n2. sin/cos преобразование\n3. Объединение с исходными координатами]
     
-    FourierDesktop --> Project[Проекция в hidden_size\nnn.Linear(51 → hidden_size)]
+    FourierStep --> Project[Проекция в hidden_size\nnn.Linear(51 → hidden_size)]
     
-    Project --> ReplacePads[Замена pad токенов\ninputs_embeds[attention_mask == -1] = point_embeds]
+    Project --> ReplacePads[Замена pad токенов\ninputs_embeds[attention_mask == -1] ← point_embeds]
     
     ReplacePads --> UpdateMask[Обновление attention_mask\n-1 → 1]
     
