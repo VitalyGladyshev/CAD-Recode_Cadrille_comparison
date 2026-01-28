@@ -294,7 +294,10 @@ flowchart LR
         A4 --> A5[Создание attention_mask<br/>-1 * 256 + 1]
         A5 --> A6[Готовые данные]
     end
-    
+```
+
+```mermaid
+flowchart LR
     subgraph Cadrille[Cadrille]
         B1[Данные из датасета] --> B2{Тип данных?}
         B2 -->|PC| B3[Добавление pad токенов<br/>в collate]
