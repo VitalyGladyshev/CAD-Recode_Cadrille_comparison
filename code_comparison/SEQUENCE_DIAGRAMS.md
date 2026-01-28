@@ -98,7 +98,7 @@ flowchart TD
     
     FourierStep --> Project[Проекция в hidden_size<br/>nn.Linear 51 -> hidden_size]
     
-    Project --> ReplacePads[Замена pad токенов<br/>inputs_embeds[attention_mask == -1]<br/>= point_embeds]
+    Project --> ReplacePads[Замена pad токенов<br/>inputs_embeds где attention_mask == -1<br/>заменяются на point_embeds]
     
     ReplacePads --> UpdateMask[Обновление attention_mask<br/>-1 -> 1]
     
@@ -110,7 +110,7 @@ flowchart TD
     
     CallBase --> GetLogits[Вычисление логитов<br/>lm_head hidden_states]
     
-    GetLogits --> ComputeLoss{labels<br/>заданы?}
+    GetLogits --> ComputeLoss{labels заданы?}
     
     ComputeLoss -->|Да| CalcLoss[Вычисление CrossEntropyLoss]
     ComputeLoss -->|Нет| NoLoss[loss = None]
