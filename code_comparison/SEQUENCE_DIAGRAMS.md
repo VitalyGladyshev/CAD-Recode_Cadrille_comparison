@@ -315,16 +315,16 @@ flowchart LR
 flowchart TD
     subgraph CADRecodeMethod[CAD-Recode метод]
         C1[inputs_embeds = embed_tokens input_ids] --> C2[point_embeds = FourierPointEncoder]
-        C2 --> C3[Векторная операция:<br/>inputs_embeds[attention_mask == -1]<br/>= point_embeds.reshape]
-        C3 --> C4[attention_mask[-1] = 1]
-        C4 --> C5[input_ids = None]
+        C2 --> C3[Векторная операция: заменяем часть inputs_embeds<br/>где attention_mask равно -1 на point_embeds]
+        C3 --> C4[Заменяем значения attention_mask -1 на 1]
+        C4 --> C5[Обнуляем input_ids: input_ids = None]
     end
     
     subgraph CadrilleMethod[Cadrille метод]
-        D1[inputs_embeds = embed_tokens input_ids] --> D2[Обработка изображений/видео<br/>если есть]
+        D1[inputs_embeds = embed_tokens input_ids] --> D2[Обработка изображений/видео если есть]
         D2 --> D3[point_embeds = FourierPointEncoder]
-        D3 --> D4[Вычисление start_idxs:<br/>attention_mask.shape[1] -<br/>attention_mask.sum axis=1]
-        D4 --> D5[Цикл по батчу:<br/>inputs_embeds[i, start_idx:...]<br/>= point_embeds[i]]
+        D3 --> D4[Вычисление start_idxs: длина последовательности минус сумма attention_mask]
+        D4 --> D5[Цикл по батчу: вставляем point_embeds в inputs_embeds начиная с start_idx]
     end
 ```
 
